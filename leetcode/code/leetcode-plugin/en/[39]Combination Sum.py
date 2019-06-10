@@ -1,8 +1,8 @@
 # coding=utf-8
-# Given a collection of candidate numbers (candidates) and a target number (target), find all unique
-# combinations in candidates where the candidate numbers sums to target.
+# Given a set of candidate numbers (candidates) (without duplicates) and a target number (target),
+# find all unique combinations in candidates where the candidate numbers sums to target.
 #
-# Each number in candidates may only be used once in the combination. 
+# The same repeated number may be chosen from candidates unlimited number of times. 
 #
 # Note: 
 #
@@ -14,30 +14,29 @@
 # Example 1: 
 #
 # 
-# Input: candidates = [10,1,2,7,6,1,5], target = 8,
+# Input: candidates = [2,3,6,7], target = 7,
 # A solution set is:
 # [
-#  [1, 7],
-#  [1, 2, 5],
-#  [2, 6],
-#  [1, 1, 6]
+#  [7],
+#  [2,2,3]
 # ]
 # 
 #
 # Example 2: 
 #
 # 
-# Input: candidates = [2,5,2,1,2], target = 5,
+# Input: candidates = [2,3,5], target = 8,
 # A solution set is:
 # [
-#   [1,2,2],
-#   [5]
+#   [2,2,2,2],
+#   [2,3,3],
+#   [3,5]
 # ]
 # 
 #
 
 class Solution(object):
-    def combinationSum2(self, candidates, target):
+    def combinationSum(self, candidates, target):
         """
         :type candidates: List[int]
         :type target: int
@@ -48,14 +47,11 @@ class Solution(object):
                 res.append(tmp[:])
             elif target > 0:
                 for i in range(start, end):
-                    if i > start and candidates[i] == candidates[i - 1]:
-                        continue
                     tmp.append(candidates[i])
-                    backtrack(tmp, i + 1, end, target - candidates[i])
+                    backtrack(tmp, i, end, target - candidates[i])
                     tmp.pop()
 
         res = []
         candidates.sort()
         backtrack([], 0, len(candidates), target)
         return res
-
