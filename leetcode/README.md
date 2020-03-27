@@ -16,7 +16,7 @@
 
 
 
-![排序算法复杂度](/Users/liuaiting/Desktop/coding/leetcode/fig/排序算法复杂度.png)
+![排序算法复杂度](fig/排序算法复杂度.png)
 
 
 
